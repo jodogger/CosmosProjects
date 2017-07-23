@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.Net.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BinFormat>elf</BinFormat>
+    <Profile>VMware</Profile>
+    <DebugEnabled>true</DebugEnabled>
+    <DebugMode>Source</DebugMode>
+    <TraceMode>User</TraceMode>
+    <EnableGDB>False</EnableGDB>
+    <StartCosmosGDB>false</StartCosmosGDB>
+    <VMWareEdition>Player</VMWareEdition>
+    <OutputPath>bin\Debug\</OutputPath>
+    <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+    <Deployment>ISO</Deployment>
+    <Launch>VMware</Launch>
+    <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Profile>VMware</Profile>
+    <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+    <Deployment>ISO</Deployment>
+    <Launch>VMware</Launch>
+    <DebugEnabled>False</DebugEnabled>
+    <DebugMode>Source</DebugMode>
+    <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+    <VMwareEdition>Player</VMwareEdition>
+    <OutputPath>bin\Debug\net462\net462\net462\</OutputPath>
+    <EnableGDB>False</EnableGDB>
+    <StartCosmosGDB>false</StartCosmosGDB>
+    <PxeInterface>10.0.0.206</PxeInterface>
+    <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
+    <VMware_Deployment>ISO</VMware_Deployment>
+    <VMware_Launch>VMware</VMware_Launch>
+    <VMware_DebugEnabled>False</VMware_DebugEnabled>
+    <VMware_DebugMode>Source</VMware_DebugMode>
+    <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
+    <VMware_PxeInterface>10.0.0.206</VMware_PxeInterface>
+    <VMware_VMwareEdition>Player</VMware_VMwareEdition>
+    <VMware_OutputPath>bin\Debug\net462\net462\net462\</VMware_OutputPath>
+    <VMware_EnableGDB>False</VMware_EnableGDB>
+    <VMware_StartCosmosGDB>false</VMware_StartCosmosGDB>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Profile>VMware</Profile>
+    <Description>Use VMware Player or Workstation to deploy and debug.</Description>
+    <Deployment>ISO</Deployment>
+    <Launch>VMware</Launch>
+    <DebugEnabled>False</DebugEnabled>
+    <DebugMode>Source</DebugMode>
+    <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+    <VMwareEdition>Player</VMwareEdition>
+    <OutputPath>bin\Debug\net462\net462\net462\</OutputPath>
+    <EnableGDB>False</EnableGDB>
+    <StartCosmosGDB>false</StartCosmosGDB>
+    <PxeInterface>10.0.0.206</PxeInterface>
+    <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
+    <VMware_Deployment>ISO</VMware_Deployment>
+    <VMware_Launch>VMware</VMware_Launch>
+    <VMware_DebugEnabled>False</VMware_DebugEnabled>
+    <VMware_DebugMode>Source</VMware_DebugMode>
+    <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
+    <VMware_PxeInterface>10.0.0.206</VMware_PxeInterface>
+    <VMware_VMwareEdition>Player</VMware_VMwareEdition>
+    <VMware_OutputPath>bin\Debug\net462\net462\net462\</VMware_OutputPath>
+    <VMware_EnableGDB>False</VMware_EnableGDB>
+    <VMware_StartCosmosGDB>false</VMware_StartCosmosGDB>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="*" />
+    <Compile Remove="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include=".\Clios.csproj">
+      <Name>Clios</Name>
+      <Project>{24c726c2-5d45-48cf-8d71-9ef3970b00dd}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cosmos.Core_Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+    <Reference Include="Cosmos.Core_Asm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+    <Reference Include="Cosmos.Debug.Kernel.Plugs.Asm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+    <Reference Include="Cosmos.System_Plugs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5ae71220097cb983" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\CommandProcessor\" />
+    <Folder Include="src\CommandProcessor\Commands\" />
+    <Folder Include="src\CommandProcessor\Variables\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Cosmos\Cosmos.targets" />
+</Project>
