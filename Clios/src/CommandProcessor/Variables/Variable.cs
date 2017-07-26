@@ -1,7 +1,5 @@
-﻿namespace Clios.src.CommandProcessor.Variables
+﻿namespace Clios.CommandProcessor.Variables
 {
-    public enum VariableType { String, Double, Int, Bool };
-
     public class Variable
     {
         public string Name { get; set; }

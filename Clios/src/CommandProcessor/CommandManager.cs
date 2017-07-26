@@ -13,7 +13,7 @@ namespace Clios.CommandProcessor
             foreach (BaseCommand c in commands)
             {
                 if (c.Name == cmd.ToLower())
-                    return c.Create();
+                    return c.Create(); // TODO: Replace with correct code
             }
             return null;
         }

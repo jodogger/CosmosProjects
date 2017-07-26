@@ -11,7 +11,7 @@ namespace Clios
         {
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(Global.FileSystem);
             Global.FileSystem.Initialize();
-            Tests();
+            //Tests();
             Console.Clear();
         }
 
