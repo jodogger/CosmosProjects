@@ -12,7 +12,7 @@ namespace Clios.CommandProcessor.Commands
             ParameterCount = 2;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             string file = args[1];
 

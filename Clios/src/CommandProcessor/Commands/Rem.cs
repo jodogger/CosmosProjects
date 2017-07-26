@@ -10,7 +10,7 @@
             VariableParms = true;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
         }
 

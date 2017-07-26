@@ -12,7 +12,7 @@ namespace Clios.CommandProcessor.Commands
             VariableParms = true;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             string key = args[1];
 

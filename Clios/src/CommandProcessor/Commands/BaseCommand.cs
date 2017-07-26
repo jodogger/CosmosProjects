@@ -9,7 +9,7 @@
         public CommandResult CommandResult = new CommandResult();
         protected int ParameterCount = 0;
 
-        public abstract void Do(params string[] args);
+        public abstract void Execute(params string[] args);
 
         public bool ValidateParams(string[] cmd)
         {

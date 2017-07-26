@@ -11,7 +11,7 @@ namespace Clios.CommandProcessor.Commands
             ParameterCount = 1;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             Sys.Power.Reboot();
         }

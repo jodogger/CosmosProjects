@@ -11,7 +11,7 @@ namespace Clios
         {
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(Global.FileSystem);
             Global.FileSystem.Initialize();
-            //Tests();
+            Tests();
             Console.Clear();
         }
 
@@ -38,6 +38,9 @@ namespace Clios
             l.Insert(5, 'a');
             foreach (char c in l)
                 Console.Write(c);
+
+            Console.WriteLine();
+
             Console.ReadKey();
             l.RemoveAt(5);
             foreach (char c in l)

@@ -8,36 +8,36 @@ namespace Clios.CommandProcessor
 {
     public class Processor
     {
-        static List<BaseCommand> Commands = new List<BaseCommand>();
-        static ConsoleTextInput TextInput = new ConsoleTextInput();
-        static List<string> BatchExtentions = new List<string> { ".bat", ".cmd" };
+        static ConsoleTextInput textInput = new ConsoleTextInput();
+        static List<string> batchExtentions = new List<string> { ".bat", ".cmd" };
 
         static Processor()
         {
-            Commands.Add(new Cd());
-            Commands.Add(new Cls());
-            Commands.Add(new Color());
-            Commands.Add(new Del());
-            Commands.Add(new Dir());
-            Commands.Add(new Echo());
-            Commands.Add(new Edit());
-            Commands.Add(new MkDir());
-            Commands.Add(new MkFile());
-            Commands.Add(new Reboot());
-            Commands.Add(new Rem());
-            Commands.Add(new RmDir());
-            Commands.Add(new Set());
-            Commands.Add(new Shutdown());
-            Commands.Add(new Commands.Type());
+            // TODO: Use reflection and attributes?
+            CommandsManager.Add(new Cd());
+            CommandsManager.Add(new Cls());
+            CommandsManager.Add(new Color());
+            CommandsManager.Add(new Del());
+            CommandsManager.Add(new Dir());
+            CommandsManager.Add(new Echo());
+            CommandsManager.Add(new Edit());
+            CommandsManager.Add(new MkDir());
+            CommandsManager.Add(new MkFile());
+            CommandsManager.Add(new Reboot());
+            CommandsManager.Add(new Rem());
+            CommandsManager.Add(new RmDir());
+            CommandsManager.Add(new Set());
+            CommandsManager.Add(new Shutdown());
+            CommandsManager.Add(new Commands.Type());
         }
 
         public static void GetCommand()
         {
-            List<DirectoryEntry> dirContents = new List<DirectoryEntry>();
+            List<DirectoryEntry> directoryContents = new List<DirectoryEntry>();
             foreach (DirectoryEntry de in Global.FileSystem.GetDirectoryListing(Global.CurrentPath))
-                dirContents.Add(de);
+                directoryContents.Add(de);
 
-            string[] parms = Split(TextInput.GetText(dirContents), false);
+            string[] parms = Split(textInput.GetText(directoryContents), false);
             Console.WriteLine();
 
             switch (parms[0].ToLower())
@@ -53,11 +53,13 @@ namespace Clios.CommandProcessor
 
         private static void ProcessParms(string[] parms)
         {
-            BaseCommand cmd = FindCommand(parms[0]);
-
+            BaseCommand cmd = CommandsManager.FindCommand(parms[0]);
             if (cmd == null)
             {
-                FindBatchOrCommandFile(parms);
+                if(!FindBatchFile(parms))
+                {
+                    Console.WriteLine("Unable to find command '" + parms[0] + "'");
+                }
             }
             else
             {
@@ -65,45 +67,46 @@ namespace Clios.CommandProcessor
             }
         }
 
-        private static void ProcessCommand(BaseCommand cmd, string[] parms)
+        private static void ProcessCommand(BaseCommand command, string[] parms)
         {
-            if (cmd.ValidateParams(parms))
+            if (CommandsManager.ValidateParams(command, parms))
             {
-                cmd.Do(parms);
-                DisplayCommandResult(cmd.CommandResult);
+                CommandsManager.Execute(command, parms);
+                DisplayCommandResult(command.CommandResult);
             }
             else
             {
-                DisplayCommandResult(cmd.CommandResult);
+                DisplayCommandResult(command.CommandResult);
             }
         }
 
-        private static void FindBatchOrCommandFile(string[] parms)
+        private static bool FindBatchFile(string[] parms)
         {
             foreach (DirectoryEntry de in Global.FileSystem.GetDirectoryListing(Global.CurrentPath))
             {
                 // !BUGGED!  if (batchExtentions.Contains(de.mName.Substring(de.mName.Length - 4)))
                 {
-                    foreach (string s in BatchExtentions)
+                    foreach (string s in batchExtentions)
                     {
                         if (s == de.mName.Substring(de.mName.Length - 4))
                         {
                             {
                                 if (de.mName.ToLower().StartsWith(parms[0]))
                                 {
-                                    ProcessBatchOrCommandFile(de.mName);
-                                    return;
+                                    ProcessBatchFile(de.mName);
+                                    return true;
                                 }
                             }
                         }
                     }
                 }
             }
+            return false;
         }
 
-        private static void ProcessBatchOrCommandFile(string file)
+        private static void ProcessBatchFile(string filename)
         {
-            string[] lines = File.ReadAllLines(Path.Combine(Global.CurrentPath, file));
+            string[] lines = File.ReadAllLines(Path.Combine(Global.CurrentPath, filename));
             int curLine = 0;
             bool loop = true;
 
@@ -156,39 +159,38 @@ namespace Clios.CommandProcessor
             }
         }
 
-        private static void DisplayCommandResult(CommandResult cr)
+        private static void DisplayCommandResult(CommandResult commandResult)
         {
-            if (cr.ClearScreen)
+            if (commandResult.ClearScreen)
             {
                 Console.Clear();
                 return;
             }
 
-            if (cr.Success)
+            if (commandResult.Success)
             {
-                foreach (string s in cr.SuccessMsg)
+                foreach (string s in commandResult.SuccessMsg)
                     Console.WriteLine(s);
             }
             else
             {
-                foreach (string s in cr.ErrorMsg)
+                foreach (string s in commandResult.ErrorMsg)
                     Console.WriteLine(s);
             }
 
-            if (cr.Exception != null)
-                Console.WriteLine("Exception: " + cr.Exception.Message);
+            if (commandResult.Exception != null)
+                Console.WriteLine("Exception: " + commandResult.Exception.Message);
         }
 
-        private static string[] Split(string v, bool eatStartingSpaces)
+        private static string[] Split(string value, bool eatStartingSpaces)
         {
             List<string> p = new List<string>();
-
             string s = "";
             int cnt = 0;
             bool inQuotes = false;
             bool startingSpaces = true;
 
-            foreach (char c in v)
+            foreach (char c in value)
             {
                 switch (c)
                 {
@@ -241,36 +243,24 @@ namespace Clios.CommandProcessor
             return result;
         }
 
-        private static BaseCommand FindCommand(string cmd)
-        {
-            foreach (BaseCommand c in Commands)
-            {
-                if (c.Name == cmd.ToLower())
-                    return c.Create();
-            }
-            return null;
-        }
-
         private static void DisplayHelp(string[] parms)
         {
             Console.WriteLine("");
 
             if (parms.Length > 1)
             {
-                BaseCommand cmd = FindCommand(parms[1]);
-                if(cmd != null)
-                {
-                    Console.WriteLine(cmd.Help);
-                }
+                CommandsManager.DisplayCommandHelp(parms[1]);
+                //BaseCommand cmd = CommandsManager.FindCommand(parms[1]);
+                //if(cmd != null)
+                //{
+                //    Console.WriteLine(cmd.Help);
+                //}
             }
             else
             {
                 Console.WriteLine("For more information on a specific command, type 'HELP <command>'.");
                 Console.WriteLine("");
-                foreach (BaseCommand c in Commands)
-                {
-                    Console.WriteLine(c.Name.PadRight(15) + c.Description);
-                }
+                CommandsManager.DisplayAllCommandsHelp();
             }
 
             Console.WriteLine("");

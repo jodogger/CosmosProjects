@@ -14,7 +14,7 @@ namespace Clios.CommandProcessor.Commands
             ParameterCount = 2;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             List<List<char>> contents = new List<List<char>>();
             string file = Path.Combine(Global.CurrentPath, args[1]);

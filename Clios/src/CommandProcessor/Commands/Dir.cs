@@ -14,7 +14,7 @@ namespace Clios.CommandProcessor.Commands
             ParameterCount = 1;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             long size = 0;
             //IEnumerable<string> files = Directory.EnumerateFiles(Global.CurrentPath);

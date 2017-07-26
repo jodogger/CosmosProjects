@@ -24,7 +24,7 @@ namespace Clios.CommandProcessor.Commands
         }
 
         // TODO: Update to use CommandResult instead of Console.
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             if (args[1].Length == 2)
             {

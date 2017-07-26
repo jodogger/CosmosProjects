@@ -11,7 +11,7 @@ namespace Clios.CommandProcessor.Commands
             ParameterCount = 4;
         }
 
-        public override void Do(params string[] args)
+        public override void Execute(params string[] args)
         {
             string name = args[1];
             string op = args[2];
