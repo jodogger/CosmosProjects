@@ -1,4 +1,4 @@
-﻿using Clios.src.CommandProcessor.Variables;
+﻿using Clios.CommandProcessor.Variables;
 
 namespace Clios.CommandProcessor.Commands
 {

@@ -13,7 +13,7 @@ namespace Clios.CommandProcessor.Commands
 
         public override void Execute(params string[] args)
         {
-            Sys.Power.Shutdown();
+            //Sys.Power.Shutdown();
         }
 
         public override BaseCommand Create()

@@ -1,17 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using Clios.CommandProcessor.Text;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Clios.CommandProcessor.Commands
 {
     public class Edit : BaseCommand
     {
-        TextEditor editor = new TextEditor();
+        TextEditor editor = null;
 
         public Edit()
         {
             Name = "edit";
             Description = "Edit test file.";
             ParameterCount = 2;
+            ConsoleTextInputIO consoleTextInputIO = new ConsoleTextInputIO();
+            editor = new TextEditor(consoleTextInputIO, false);
         }
 
         public override void Execute(params string[] args)
@@ -29,7 +32,7 @@ namespace Clios.CommandProcessor.Commands
                     contents.Add(GetCharArray(s));
             }
 
-            editor.GetText(file, contents);
+            editor.Edit(file);
             CommandResult.ClearScreen = true;
         }
 

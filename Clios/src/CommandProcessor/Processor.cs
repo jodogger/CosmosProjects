@@ -3,12 +3,13 @@ using Clios.CommandProcessor.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Clios.CommandProcessor.Text;
 
 namespace Clios.CommandProcessor
 {
     public class Processor
     {
-        static ConsoleTextInput textInput = new ConsoleTextInput();
+        static TextInput textInput = null;
         static List<string> batchExtentions = new List<string> { ".bat", ".cmd" };
 
         static Processor()
@@ -31,32 +32,48 @@ namespace Clios.CommandProcessor
             CommandsManager.Add(new Commands.Type());
         }
 
-        public static void GetCommand()
+        public static string GetCommand()
         {
             List<DirectoryEntry> directoryContents = new List<DirectoryEntry>();
             foreach (DirectoryEntry de in Global.FileSystem.GetDirectoryListing(Global.CurrentPath))
                 directoryContents.Add(de);
 
-            string[] parms = Split(textInput.GetText(directoryContents), false);
-            Console.WriteLine();
+            ConsoleTextInputIO consoleTextInputIO = new ConsoleTextInputIO();
+            textInput = new TextInput(consoleTextInputIO, false);
 
-            switch (parms[0].ToLower())
+            TextInputResult tir = textInput.GetText("");
+            if (tir.ConsoleKeyInfo.Key == ConsoleKey.Enter)
             {
-                case "help":
-                    DisplayHelp(parms);
-                    break;
-                default:
-                    ProcessParms(parms);
-                    break;
+                if (tir.Result.Length > 0)
+                {
+                    string[] parms = Split(tir.Result, false);
+                    Console.WriteLine();
+
+                    switch (parms[0].ToLower())
+                    {
+                        case "help":
+                            DisplayHelp(parms);
+                            break;
+                        default:
+                            DetermineCommandType(parms);
+                            break;
+                    }
+                }
             }
+            else
+            {
+                // process special keys : TAB, Down\Up arrow, Function keys.
+            }
+
+            return tir.Result;
         }
 
-        private static void ProcessParms(string[] parms)
+        private static void DetermineCommandType(string[] parms)
         {
             BaseCommand cmd = CommandsManager.FindCommand(parms[0]);
             if (cmd == null)
             {
-                if(!FindBatchFile(parms))
+                if(!FindExecutable(parms))
                 {
                     Console.WriteLine("Unable to find command '" + parms[0] + "'");
                 }
@@ -80,7 +97,7 @@ namespace Clios.CommandProcessor
             }
         }
 
-        private static bool FindBatchFile(string[] parms)
+        private static bool FindExecutable(string[] parms)
         {
             foreach (DirectoryEntry de in Global.FileSystem.GetDirectoryListing(Global.CurrentPath))
             {
@@ -152,7 +169,7 @@ namespace Clios.CommandProcessor
                         loop = false;
                         break;
                     default:
-                        ProcessParms(parms);
+                        DetermineCommandType(parms);
                         curLine++;
                         break;
                 }

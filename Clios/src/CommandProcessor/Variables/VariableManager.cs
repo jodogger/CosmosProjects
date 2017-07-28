@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Clios.CommandProcessor.Variables;
+using System.Collections.Generic;
 
-namespace Clios.src.CommandProcessor.Variables
+namespace Clios.CommandProcessor.Variables
 {
     public class VariableManager
     {
