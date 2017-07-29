@@ -1,4 +1,8 @@
-﻿using Cosmos.System.FileSystem.Listing;
+﻿#if COSMOS
+using Cosmos.System.FileSystem.Listing;
+#else
+using Clios.Helpers;
+#endif
 using System;
 
 namespace Clios.CommandProcessor.Commands

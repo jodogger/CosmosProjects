@@ -1,5 +1,4 @@
-﻿using Clios.Extentions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,7 +34,7 @@ namespace Clios.CommandProcessor.Text
                 TextInputResult textResult = textInput.GetText("");
                 if (textResult.ConsoleKeyInfo.Key == System.ConsoleKey.Enter)
                 {
-                    lines = lines.InsertAtX(index, textResult.Result);
+                    lines.Insert(index, textResult.Result);
                     index++;
                     top++;
                     continue;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Clios.CommandProcessor.Commands
 {
@@ -51,7 +50,6 @@ namespace Clios.CommandProcessor.Commands
             }
             else
             {
-                //if(Directory.Exists(Path.Combine(Global.CurrentPath, newPath)))
                 try
                 {
                     if (Global.FileSystem.GetDirectory(Path.Combine(Global.CurrentPath, newPath)) != null)

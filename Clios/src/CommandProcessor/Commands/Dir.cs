@@ -1,4 +1,9 @@
-﻿using Cosmos.System.FileSystem.Listing;
+﻿#if COSMOS
+using Cosmos.System.FileSystem.Listing;
+#else
+using Clios.Helpers;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +22,6 @@ namespace Clios.CommandProcessor.Commands
         public override void Execute(params string[] args)
         {
             long size = 0;
-            //IEnumerable<string> files = Directory.EnumerateFiles(Global.CurrentPath);
-            //IEnumerable<string> dirs = Directory.EnumerateDirectories(Global.CurrentPath);
             List<string> files = new List<string>();
             List<string> dirs = new List<string>();
 

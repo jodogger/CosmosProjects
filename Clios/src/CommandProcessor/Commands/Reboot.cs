@@ -1,4 +1,8 @@
-﻿using Sys = Cosmos.System;
+﻿#if COSMOS
+using Sys = Cosmos.System;
+#else
+using System;
+#endif
 
 namespace Clios.CommandProcessor.Commands
 {
@@ -13,7 +17,11 @@ namespace Clios.CommandProcessor.Commands
 
         public override void Execute(params string[] args)
         {
+#if COSMOS
             Sys.Power.Reboot();
+#else
+            Console.WriteLine("Rebooted");
+#endif
         }
 
         public override BaseCommand Create()

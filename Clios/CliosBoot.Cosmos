@@ -22,23 +22,23 @@
     <Description>Use VMware Player or Workstation to deploy and debug.</Description>
     <Deployment>ISO</Deployment>
     <Launch>VMware</Launch>
-    <DebugEnabled>False</DebugEnabled>
+    <DebugEnabled>True</DebugEnabled>
     <DebugMode>Source</DebugMode>
     <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
     <VMwareEdition>Player</VMwareEdition>
-    <OutputPath>bin\Debug\net462\net462\net462\</OutputPath>
+    <OutputPath>bin\Debug\net462\net462\net462\net462\</OutputPath>
     <EnableGDB>False</EnableGDB>
     <StartCosmosGDB>false</StartCosmosGDB>
     <PxeInterface>10.0.0.206</PxeInterface>
     <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
     <VMware_Deployment>ISO</VMware_Deployment>
     <VMware_Launch>VMware</VMware_Launch>
-    <VMware_DebugEnabled>False</VMware_DebugEnabled>
+    <VMware_DebugEnabled>True</VMware_DebugEnabled>
     <VMware_DebugMode>Source</VMware_DebugMode>
     <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
     <VMware_PxeInterface>10.0.0.206</VMware_PxeInterface>
     <VMware_VMwareEdition>Player</VMware_VMwareEdition>
-    <VMware_OutputPath>bin\Debug\net462\net462\net462\</VMware_OutputPath>
+    <VMware_OutputPath>bin\Debug\net462\net462\net462\net462\</VMware_OutputPath>
     <VMware_EnableGDB>False</VMware_EnableGDB>
     <VMware_StartCosmosGDB>false</VMware_StartCosmosGDB>
   </PropertyGroup>
@@ -47,23 +47,23 @@
     <Description>Use VMware Player or Workstation to deploy and debug.</Description>
     <Deployment>ISO</Deployment>
     <Launch>VMware</Launch>
-    <DebugEnabled>False</DebugEnabled>
+    <DebugEnabled>True</DebugEnabled>
     <DebugMode>Source</DebugMode>
     <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
     <VMwareEdition>Player</VMwareEdition>
-    <OutputPath>bin\Debug\net462\net462\net462\</OutputPath>
+    <OutputPath>bin\Debug\net462\net462\net462\net462\</OutputPath>
     <EnableGDB>False</EnableGDB>
     <StartCosmosGDB>false</StartCosmosGDB>
     <PxeInterface>10.0.0.206</PxeInterface>
     <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
     <VMware_Deployment>ISO</VMware_Deployment>
     <VMware_Launch>VMware</VMware_Launch>
-    <VMware_DebugEnabled>False</VMware_DebugEnabled>
+    <VMware_DebugEnabled>True</VMware_DebugEnabled>
     <VMware_DebugMode>Source</VMware_DebugMode>
     <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
     <VMware_PxeInterface>10.0.0.206</VMware_PxeInterface>
     <VMware_VMwareEdition>Player</VMware_VMwareEdition>
-    <VMware_OutputPath>bin\Debug\net462\net462\net462\</VMware_OutputPath>
+    <VMware_OutputPath>bin\Debug\net462\net462\net462\net462\</VMware_OutputPath>
     <VMware_EnableGDB>False</VMware_EnableGDB>
     <VMware_StartCosmosGDB>false</VMware_StartCosmosGDB>
   </PropertyGroup>
@@ -87,7 +87,10 @@
     <Folder Include="src\" />
     <Folder Include="src\CommandProcessor\" />
     <Folder Include="src\CommandProcessor\Commands\" />
+    <Folder Include="src\CommandProcessor\Text\" />
     <Folder Include="src\CommandProcessor\Variables\" />
+    <Folder Include="src\Extentions\" />
+    <Folder Include="src\Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Cosmos\Cosmos.targets" />
 </Project>

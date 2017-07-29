@@ -60,28 +60,30 @@ namespace Clios.CommandProcessor.Variables
             {
             }
 
-            //try
-            //{
-            //    double d = double.Parse(value.ToString());
-            //    v.Type = VariableType.Double;
-            //    v.Value = d;
-            //    return;
-            //}
-            //catch
-            //{
-            //}
+#if COSMOS
+#else
+            try
+            {
+                double d = double.Parse(value.ToString());
+                v.Type = VariableType.Double;
+                v.Value = d;
+                return;
+            }
+            catch
+            {
+            }
 
-            //try
-            //{
-            //    bool b = bool.Parse(value.ToString());
-            //    v.Type = VariableType.Bool;
-            //    v.Value = b;
-            //    return;
-            //}
-            //catch
-            //{
-            //}
-
+            try
+            {
+                bool b = bool.Parse(value.ToString());
+                v.Type = VariableType.Bool;
+                v.Value = b;
+                return;
+            }
+            catch
+            {
+            }
+#endif
             v.Type = VariableType.String;
             v.Value = value;
         }

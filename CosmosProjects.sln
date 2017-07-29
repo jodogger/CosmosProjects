@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clios", "Clios\Clios.csproj
 EndProject
 Project("{471EC4BB-E47E-4229-A789-D1F5F83B52D4}") = "CliosBoot", "Clios\CliosBoot.Cosmos", "{BCD37B29-882D-4F59-AF68-C0328C265995}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliosConsole", "CliosConsole\CliosConsole.csproj", "{29101C64-D452-4385-9E13-A8F1523A7D50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +22,12 @@ Global
 		{24C726C2-5D45-48CF-8D71-9EF3970B00DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24C726C2-5D45-48CF-8D71-9EF3970B00DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCD37B29-882D-4F59-AF68-C0328C265995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCD37B29-882D-4F59-AF68-C0328C265995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD37B29-882D-4F59-AF68-C0328C265995}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCD37B29-882D-4F59-AF68-C0328C265995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29101C64-D452-4385-9E13-A8F1523A7D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29101C64-D452-4385-9E13-A8F1523A7D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29101C64-D452-4385-9E13-A8F1523A7D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29101C64-D452-4385-9E13-A8F1523A7D50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +35,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{24C726C2-5D45-48CF-8D71-9EF3970B00DD} = {B721CAB3-0454-48C4-98C2-4352ED520E45}
 		{BCD37B29-882D-4F59-AF68-C0328C265995} = {B721CAB3-0454-48C4-98C2-4352ED520E45}
+		{29101C64-D452-4385-9E13-A8F1523A7D50} = {B721CAB3-0454-48C4-98C2-4352ED520E45}
 	EndGlobalSection
 EndGlobal

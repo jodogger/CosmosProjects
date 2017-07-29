@@ -1,22 +1,41 @@
 ﻿using Clios.CommandProcessor;
 using System;
 using System.Collections.Generic;
+#if COSMOS
 using Sys = Cosmos.System;
+#endif
 
 namespace Clios
 {
+#if COSMOS
     public class Kernel: Sys.Kernel
+#else
+    public class Kernel
+#endif
     {
+#if COSMOS
         protected override void BeforeRun()
         {
             Sys.FileSystem.VFS.VFSManager.RegisterVFS(Global.FileSystem);
             Global.FileSystem.Initialize();
-            //Tests();
-            Console.Clear();
         }
 
         protected override void Run()
         {
+            run();
+        }
+#else
+        public void Run()
+        {
+            run();
+        }
+#endif
+
+        private void run()
+        {
+            //Tests();
+
+            Console.Clear();
             while (true)
             {
                 string prompt = GetPrompt();

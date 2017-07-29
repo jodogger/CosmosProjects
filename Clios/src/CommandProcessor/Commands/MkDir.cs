@@ -24,7 +24,7 @@ namespace Clios.CommandProcessor.Commands
 
                 if(!Directory.Exists(dir))
                 {
-                    Global.FileSystem.CreateDirectory(dir); // Directory.CreateDirectory(dir);
+                    Global.FileSystem.CreateDirectory(dir);
                 }
                 else
                 {

@@ -1,4 +1,7 @@
-﻿using Sys = Cosmos.System;
+﻿#if COSMOS
+using Sys = Cosmos.System;
+#else
+#endif
 
 namespace Clios.CommandProcessor.Commands
 {

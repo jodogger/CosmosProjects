@@ -1,5 +1,4 @@
-﻿using Clios.Extentions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -42,7 +41,7 @@ namespace Clios.CommandProcessor.Text
                     switch (inputMode)
                     {
                         case InputMode.Insert:
-                            result = result.InsertAtX(index, cki.KeyChar);
+                            result.Insert(index, cki.KeyChar);
                             break;
                         case InputMode.Override:
                             if (index < result.Count)
@@ -51,7 +50,7 @@ namespace Clios.CommandProcessor.Text
                             }
                             else
                             {
-                                result = result.InsertAtX(index, cki.KeyChar);
+                                result.Insert(index, cki.KeyChar);
                             }
                             break;
                     }
@@ -66,7 +65,7 @@ namespace Clios.CommandProcessor.Text
                 {
                     case ConsoleKey.Backspace:
                         if (index > 0)
-                            result = result.RemoveAtX(index - 1);
+                            result.RemoveAt(index - 1);
                         else
                             continue;
                         index--;
@@ -78,7 +77,7 @@ namespace Clios.CommandProcessor.Text
                         break;
                     case ConsoleKey.Delete:
                         if (index < result.Count)
-                            result = result.RemoveAtX(index);
+                            result.RemoveAt(index);
                         break;
                     case ConsoleKey.DownArrow:
                         loop = false;
@@ -130,7 +129,7 @@ namespace Clios.CommandProcessor.Text
                                     {
                                         for (int i = index; i < index + TAB_SIZE; i++)
                                         {
-                                            result.InsertAtX(i, ' ');
+                                            result.Insert(i, ' ');
                                         }
                                         index += TAB_SIZE;
                                         curLeft += TAB_SIZE;
