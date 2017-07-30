@@ -4,6 +4,15 @@ namespace Clios.CommandProcessor.Text
 {
     public class ConsoleTextInputIO : ITextInputIO
     {
+        public ConsoleTextInputIO()
+        {
+#if COSMOS
+#else
+            Console.SetWindowSize(80, 24);
+            Console.TreatControlCAsInput = true;
+#endif
+        }
+
         public void Clear()
         {
             Console.Clear();
